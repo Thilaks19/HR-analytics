@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -15,37 +9,24 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
-
 
 df = pd.read_csv('C:/Users/THILAK.S/Downloads/Data P3 MeriSKILL/HR-Employee-Attrition.csv')
-
-
-# In[3]:
 
 
 df.head
 
 
-# In[4]:
+
 
 
 df.tail(5)
 
 
-# In[5]:
-
 
 df.shape
 
 
-# In[6]:
-
-
 df.columns
-
-
-# In[7]:
 
 
 #Data reading, checking dimensions and information of the data
@@ -58,25 +39,13 @@ print('Information:')
 df.info()
 
 
-# In[8]:
-
-
 print(df.apply(lambda col: col.unique())) 
-
-
-# In[9]:
 
 
 df.nunique()
 
 
-# In[10]:
-
-
 df.corr()
-
-
-# In[11]:
 
 
 #Cheking for duplicates 
@@ -84,21 +53,12 @@ value=len(df[df.duplicated()])
 print(value) 
 
 
-# In[12]:
-
-
 #Cheking for missing
 df.isnull().sum()
 
 
-# In[13]:
-
-
 #Statistical summary
 df.describe().T
-
-
-# In[14]:
 
 
 df.drop(['EmployeeCount'],axis=1,inplace=True)
@@ -111,13 +71,9 @@ df.drop(['StandardHours'],axis=1,inplace=True)
 df.drop(['YearsWithCurrManager'],axis=1,inplace=True)
 
 
-# In[15]:
-
 
 df.head(5)
 
-
-# In[16]:
 
 
 def plot_stacked_bars(dataframe, title_, size_=(18, 10), rot_=0, legend_="upper right"):
@@ -153,22 +109,15 @@ def annotate_stacked_bars(ax, pad=0.99, colour="white", textsize=13):
         )
 
 
-# In[17]:
-
-
 Attrition  = df [['Age', 'Attrition']]
 Attrition.columns = ['TotalWorkingYear', 'Attrition']
 attrition_total = Attrition.groupby(Attrition['Attrition']).count()
 attrition_percentage = attrition_total / attrition_total.sum() * 100
 
 
-# In[18]:
-
-
 plot_stacked_bars(attrition_percentage.transpose(), "Attrition status", (5, 5),legend_="lower right")
 
 
-# In[19]:
 
 
 import plotly.graph_objects as go
@@ -185,8 +134,6 @@ fig.update_layout(
 fig.show()
 
 
-# In[20]:
-
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -196,8 +143,6 @@ plt.figure(figsize=(12, 8))
 sns.lineplot(data=df, x='YearsInCurrentRole', y='MonthlyIncome')
 plt.show()
 
-
-# In[22]:
 
 
 import seaborn as sns
@@ -214,14 +159,9 @@ plt.ylabel('Density')
 plt.show()
 
 
-# In[23]:
-
 
 fig = px.pie(df, names='MaritalStatus', title='Marital Status', color_discrete_sequence=['#48795E', '#003566', '#707BAD'])
 fig.show()
-
-
-# In[24]:
 
 
 fig = px.histogram(df, x='MaritalStatus', color='Attrition', title='Number of attritional employees or not by Marital Status')
@@ -237,8 +177,6 @@ fig.update_layout(
 fig.update_layout(template="plotly_dark" )
 fig.show()
 
-
-# In[26]:
 
 
 import plotly.graph_objects as go
@@ -259,8 +197,6 @@ fig.update_layout(template="plotly_dark" )
 
 fig.show()
 
-
-# In[27]:
 
 
 def barplot(column, horizontal):
